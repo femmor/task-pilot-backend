@@ -1,15 +1,23 @@
 import express, { Request, Response } from 'express';
 import dotenv from 'dotenv';
 import { connectDB } from './config/connectDB.js';
+import taskRoutes from './routes/taskRoutes.js';
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5005;
 
+app.use(express.json());
+
+// Routes
+app.use('/api/tasks', taskRoutes);
+
 app.get('/api/health', (req: Request, res: Response) => {
     res.json({ message: 'OK! backend is running' });
 });
+
+
 
 const startServer = async () => {
     try {

@@ -13,7 +13,8 @@ const getTaskById = (req: Request, res: Response) => {
 
 // Create a new task
 const createTask = (req: Request, res: Response) => {
-    res.json({ message: 'Create a new task' });
+    const { title, description } = req.body;
+    res.json({ message: 'Create a new task', task: { title, description } });
 };
 
 // Update a task
